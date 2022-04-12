@@ -15,7 +15,7 @@
 #include <algorithm> //std::remove
 
 //Preprocessor macro, stringifies the name of the type and forwards it to our function
-#define GET_VAL(type) get_val<type>(#type)
+#define GETVAL(type) getVal<type>(#type)
 using std::cout;
 using std::cin;
 using std::endl;
@@ -24,7 +24,7 @@ using std::string;
 int getNumber();
 string getStr();
 char getChar();
-template<typename TYPE> TYPE get_val(const char* type_str);
+template<typename TYPE> TYPE getVal(const char* type_str);
 bool isValid(int ourNum, int numArgsRead);
 void removeCharsFromString(string &str);
 
@@ -36,7 +36,7 @@ int main()
     cout << "Your number is: " << number << endl;
     
     //String validation
-    cout << "Type in a string without any numbers: ";
+    cout << "Type in a string without any numbers or spaces: ";
     string str = getStr();
     cout << "Your string is: " << str << endl;
     
@@ -46,27 +46,27 @@ int main()
     cout << "Your character is: " << aChar << endl;
     
     //Type validation only, doesn't look for specific characters
-    int i = GET_VAL(int);
-    double d = GET_VAL(double);
-    str = GET_VAL(std::string) ;
-    char char23 = GET_VAL(char);
+    int i = GETVAL(int);
+    double d = GETVAL(double);
+    str = GETVAL(std::string) ;
+    aChar = GETVAL(char);
 
     //Normal validation, Scanf method
     int ourInt;
     int numArgsRead;
     //Checking for valid input
+    /*  %c = character
+        %d = integer
+        %s = string
+        %lf = double
+    */
     do{
         std::cout << "Enter a number (1 - 2): ";
         numArgsRead = scanf("%d", &ourInt);
     }while(isValid(ourInt, numArgsRead));
     cout << "Your number is: " << ourInt << endl;
 
-    //Removing specific characters from a string.
-    /*  %c = character
-	%d = integer
-	%s = string
-	%lf = double
-    */
+    //Removing specific characters from a string
     cout << "Type in a string (spaces, parentheses, numbers, and dashes will be removed): ";
     getline(cin, str);
     removeCharsFromString(str);
@@ -153,7 +153,7 @@ char getChar(){
 }
 
 //Get valid input of different types, int, double, string
-template<typename TYPE> TYPE get_val(const char* type_str){
+template<typename TYPE> TYPE getVal(const char* type_str){
     std::cout << "Enter an input of type " << type_str << ": ";
 
     TYPE value ;
@@ -164,7 +164,7 @@ template<typename TYPE> TYPE get_val(const char* type_str){
     std::cout << "Invalid Input. Try again: " ;
     std::cin.clear() ;
     std::cin.ignore(1000, '\n') ;
-    return get_val<TYPE>(type_str) ;
+    return getVal<TYPE>(type_str) ;
 }
 
 //Scanf validation
