@@ -61,7 +61,12 @@ int main()
     }while(isValid(ourInt, numArgsRead));
     cout << "Your number is: " << ourInt << endl;
 
-    //Removing specific characters from a string
+    //Removing specific characters from a string.
+    /*  %c = character
+	%d = integer
+	%s = string
+	%lf = double
+    */
     cout << "Type in a string (spaces, parentheses, numbers, and dashes will be removed): ";
     getline(cin, str);
     removeCharsFromString(str);
