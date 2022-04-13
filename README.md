@@ -1,5 +1,5 @@
 # Valid Input
-Specific valid input methods in C++ for different datatypes. 
+Specific valid input methods in C++ and C# for different datatypes. Below I'll cover the C++ version. The C# version is similar.
 
 The purpose of the program is to validate input from the user as user input is unpredicable, so it is important to make sure we have accounted for input that may break our programs. It will cover string, int, double, and character validation. This program is made so that one can avoid using a ton of if/else if/or/and/switch statements.
 
