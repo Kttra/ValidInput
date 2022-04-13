@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic; //List
+using System;
 using System.Text.RegularExpressions; //regex
-using System.Linq; //any
 /*  Program created by Kttra
  
     The purpose of the program is to show different ways to validate
@@ -39,9 +37,7 @@ namespace cSharpTesting
             myString = Console.ReadLine();
             //var unwantedChars = new char[] { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9' }; //Can also pass unwantedChars
             myString = myString.RemoveCharacters('0', '1', '2', '3', '4', '5', '6', '7', '8', '9');
-            Console.WriteLine($"Your string is: {myString}");
-            
-
+            Console.WriteLine($"Your string is: {myString}");     
         }
         //Get an integer input, can rewrite for double, bool, float, char
         public static int getInt()
