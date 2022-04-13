@@ -195,8 +195,9 @@ bool isValid(int ourNum, int numArgsRead){
 	return valid;
 }
 
-//Remove specific characters from a string
+//Remove specific characters from a string, pass by reference
 void removeCharsFromString(string &str){
+//Array of characters to remove from the string	
     char charsToRemove[] = "1234567890()- ";
 
    for ( unsigned int i = 0; i < strlen(charsToRemove); ++i ) {
