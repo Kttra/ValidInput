@@ -1,5 +1,7 @@
 using System;
+using System.Collections.Generic; //List
 using System.Text.RegularExpressions; //regex
+using System.Linq; //any
 /*  Program created by Kttra
  
     The purpose of the program is to show different ways to validate
@@ -37,7 +39,9 @@ namespace cSharpTesting
             myString = Console.ReadLine();
             //var unwantedChars = new char[] { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9' }; //Can also pass unwantedChars
             myString = myString.RemoveCharacters('0', '1', '2', '3', '4', '5', '6', '7', '8', '9');
-            Console.WriteLine($"Your string is: {myString}");     
+            Console.WriteLine($"Your string is: {myString}");
+
+
         }
         //Get an integer input, can rewrite for double, bool, float, char
         public static int getInt()
@@ -69,21 +73,20 @@ namespace cSharpTesting
 
             return decimalNum;
         }
-        //Get a specific string with only specific characters (check for unwanted characters)
+        //Get a specific string with only specific characters (checks for unwanted characters)
         public static string getSpecificString()
         {
-            Console.Write("Input a string (cannot contain spaces, 0-9, +, -, /, *, (, )): ");
+            Console.Write("Input a string (cannot contain spaces, 0-9, +, -, /, *, (, ), ,): ");
             string userInput = Console.ReadLine();
 
-            for(;;)
+            for (; ; )
             {
                 //Can change the unwanted characters here
-                Regex regex = new Regex(@"[^0-9+\-\/\*\(\)]");
-                MatchCollection matches = regex.Matches(userInput);
+                Regex Validator = new Regex(@"[0-9+\-/*(),]");
 
                 //If there are no unwanted characters, exit and return the string
                 //If we want whitespace specifically, userInput.Any(x => Char.IsWhiteSpace(x))
-                if (matches.Count > 0 && !userInput.Contains(" "))
+                if (!Validator.IsMatch(userInput) && !userInput.Contains(" "))
                 {
                     break;
                 }
@@ -93,21 +96,19 @@ namespace cSharpTesting
 
             return userInput;
         }
-        //Get a specific string with only specific characters (wanted characters)
+        //Get a specific string allowing only specific characters (wanted characters)
         public static string getSpecificString2()
         {
-            Console.Write("Input a string (spaces, 0-9, +, -, /, *, (, ) are allowed): ");
+            Console.Write("Input a string (spaces, 0-9, +, -, /, *, (, ), , are allowed): ");
             string userInput = Console.ReadLine();
 
             for (; ; )
             {
                 //Can change the wanted characters here
-                Regex regex = new Regex(@"[0-9+\-\/\*\(\)]");
-                MatchCollection matches = regex.Matches(userInput);
+                Regex Validator = new Regex(@"^[0-9+\-/*(), ]+$");
 
                 //If there are no unwanted characters, exit and return the string
-                //If we want whitespace specifically, userInput.Any(x => Char.IsWhiteSpace(x))
-                if (matches.Count > 0 && !userInput.Contains(" "))
+                if (Validator.IsMatch(userInput))
                 {
                     break;
                 }
@@ -116,6 +117,20 @@ namespace cSharpTesting
             }
 
             return userInput;
+        }
+        public bool FormatValid(string format)
+        {
+            string allowableLetters = "yYmMdDsShH";
+
+            foreach (char c in format)
+            {
+                if (!allowableLetters.Contains(c.ToString()))
+                {
+                    return false;
+                }
+            }
+
+            return true;
         }
         //Get a string while removing specific characters
         public static string editString()
