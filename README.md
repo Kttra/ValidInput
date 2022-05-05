@@ -9,7 +9,7 @@ In addition, the program will go over removing specific characters from a string
 -----
 Below is the getStr function where the function will continue looping until we receive a string without any numbers and spaces. The code can easily be altered to only accept specific characters by adding or removing characters in the allowedChars variable. Included in the code is an integer and character version.
 
-```
+```cpp
 string getStr(){
     string theInput;
     int inputAsInt;
@@ -38,7 +38,7 @@ string getStr(){
 -----
 Below is a portion of the code used to only validate if we are receiving the right data type from the user. To call this function we have defined it using a preprocessor macro called GETVAL. An example of calling it to validate a double input would be like so: ```double ourDouble = GETVAL(double)```. We can replace the double type with any other type making this function very flexible. However, it does not check for specific input like our previous function does.
 
-```
+```cpp
 template<typename TYPE> TYPE getVal(const char* type_str){
     std::cout << "Enter an input of type " << type_str << ": ";
 
